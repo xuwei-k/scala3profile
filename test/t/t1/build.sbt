@@ -7,15 +7,14 @@ TaskKey[Unit]("check") := {
     "A2.scala",
     "A3.scala",
     "T2.scala",
-  ).foreach {
-    x => assert(json contains x, json)
+  ).foreach { x =>
+    assert(json contains x, json)
   }
 }
 
-val a1 = project
-  .settings(
-    scalaVersion := scala3
-  )
+val a1 = project.settings(
+  scalaVersion := scala3
+)
 
 val a2 = project
   .settings(
@@ -23,6 +22,5 @@ val a2 = project
   )
   .dependsOn(a1)
 
-val a3 = project
-  .settings(
-  )
+val a3 = project.settings(
+)
