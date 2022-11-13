@@ -16,18 +16,20 @@ trait ProfileBase extends Phases.Phase {
   protected[this] def outputFile: File
   protected[this] def minTime: Long
 
+  protected[this] def log: Logger
+
   protected[this] def categories: Seq[String]
 
   private[this] val compileTimeResults: TrieMap[String, Time] = TrieMap.empty[String, Time]
 
   override final def runOn(units: List[CompilationUnit])(using Context): List[CompilationUnit] = {
-    report.echo(s"start ${phaseName} profile " + outputFile)
+    log.debug(s"start ${phaseName} profile " + outputFile)
     val result = super.runOn(units)
-    report.echo(s"end ${phaseName} profile " + outputFile)
+    log.debug(s"end ${phaseName} profile " + outputFile)
     val list = compileTimeResults.toList
     compileTimeResults.clear()
     if (list.isEmpty) {
-      report.echo(s"[${phaseName} profile] there is no result " + outputFile)
+      log.debug(s"[${phaseName} profile] there is no result " + outputFile)
     }
 
     val base = new File(".").getAbsoluteFile.toPath
@@ -41,7 +43,7 @@ trait ProfileBase extends Phases.Phase {
         threadId = threadId
       )
     }.mkString("[\n", ",\n", "\n]")
-    report.echo("write to " + outputFile)
+    log.debug("write to " + outputFile)
     Files.write(outputFile.toPath, json.getBytes(StandardCharsets.UTF_8))
     result
   }

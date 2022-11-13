@@ -16,6 +16,10 @@ class Scala3Profile extends ResearchPlugin {
 
   override def init(options: List[String], phasesList: List[List[Phase]])(using c: Context): List[List[Phase]] = {
     report.echo("options = " + options.mkString(", "))
+
+    val isDebug = options.collectFirst { case s"loglevel:debug" => () }.isDefined
+    val log = new Logger(isDebug = isDebug)
+
     val outputDir = options.collectFirst { case s"output-dir:${fileName}" =>
       new File(fileName)
     }.getOrElse(
@@ -34,13 +38,23 @@ class Scala3Profile extends ResearchPlugin {
     phasesList.map {
       _.map {
         case phase if phase.phaseName == "inlining" && phases.contains(phase.phaseName) =>
-          report.echo("replace inlining phase " + outputDir)
+          log.debug("replace inlining phase " + outputDir)
           val outputFile = new File(outputDir, baseName + "-inlining.json")
-          new ProfileInlining(outputFile = outputFile, minTime = minTime, categories = categories)
+          new ProfileInlining(
+            outputFile = outputFile,
+            minTime = minTime,
+            categories = categories,
+            log = log
+          )
         case phase if phase.phaseName == "typer" && phases.contains(phase.phaseName) =>
-          report.echo("replace typer phase " + outputDir)
+          log.debug("replace typer phase " + outputDir)
           val outputFile = new File(outputDir, baseName + "-typer.json")
-          new ProfileTyper(outputFile = outputFile, minTime = minTime, categories = categories)
+          new ProfileTyper(
+            outputFile = outputFile,
+            minTime = minTime,
+            categories = categories,
+            log = log
+          )
         case other =>
           other
       }

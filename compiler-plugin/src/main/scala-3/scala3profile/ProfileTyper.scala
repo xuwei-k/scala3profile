@@ -12,7 +12,8 @@ import scala.collection.concurrent.TrieMap
 class ProfileTyper(
   outputFile: File,
   minTime: Long,
-  categories: Seq[String]
+  categories: Seq[String],
+  log: Logger
 ) extends TyperPhase {
 
   private[this] val enterSymsResult: TrieMap[String, Time] = TrieMap.empty[String, Time]
@@ -26,9 +27,9 @@ class ProfileTyper(
   )
 
   override final def runOn(units: List[CompilationUnit])(using Context): List[CompilationUnit] = {
-    report.echo(s"start ${phaseName} profile " + outputFile)
+    log.debug(s"start ${phaseName} profile " + outputFile)
     val result = super.runOn(units)
-    report.echo(s"end ${phaseName} profile " + outputFile)
+    log.debug(s"end ${phaseName} profile " + outputFile)
 
     val base = new File(".").getAbsoluteFile.toPath
     val threadId = Thread.currentThread().getId
@@ -43,7 +44,7 @@ class ProfileTyper(
         )
       }
     }.mkString("[\n", ",\n", "\n]")
-    report.echo("write to " + outputFile)
+    log.debug("write to " + outputFile)
     Files.write(outputFile.toPath, json.getBytes(StandardCharsets.UTF_8))
     result
   }
