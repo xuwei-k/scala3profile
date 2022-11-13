@@ -15,7 +15,7 @@ class Scala3Profile extends ResearchPlugin {
   private[this] val StringToPosLongExtractor: PartialFunction[String, Long] = stringToPosInt.unlift
 
   override def init(options: List[String], phasesList: List[List[Phase]])(using c: Context): List[List[Phase]] = {
-    println("options = " + options.mkString(", "))
+    report.echo("options = " + options.mkString(", "))
     val outputDir = options.collectFirst { case s"output-dir:${fileName}" =>
       new File(fileName)
     }.getOrElse(
