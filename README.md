@@ -1,5 +1,7 @@
 # scala3profile
 
+[![Latest version](https://index.scala-lang.org/xuwei-k/scala3profile/scala3profile/latest.svg)](https://index.scala-lang.org/xuwei-k/scala3profile/artifacts/scala3profile)
+
 ## Setup
 
 ### `project/plugins.sbt`
