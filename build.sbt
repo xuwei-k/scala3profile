@@ -110,4 +110,4 @@ lazy val compilerPlugin = project
     description := "scala 3 profile compiler plugin",
   )
 
-ThisBuild / scalafixDependencies += "com.github.xuwei-k" %% "scalafix-rules" % "0.2.11"
+ThisBuild / scalafixDependencies += "com.github.xuwei-k" %% "scalafix-rules" % "0.2.18"
