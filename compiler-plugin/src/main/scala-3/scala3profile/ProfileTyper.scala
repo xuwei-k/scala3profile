@@ -16,9 +16,9 @@ class ProfileTyper(
   log: Logger
 ) extends TyperPhase {
 
-  private[this] val enterSymsResult: TrieMap[String, Time] = TrieMap.empty[String, Time]
-  private[this] val typeCheckResult: TrieMap[String, Time] = TrieMap.empty[String, Time]
-  private[this] val javaCheckResult: TrieMap[String, Time] = TrieMap.empty[String, Time]
+  private val enterSymsResult: TrieMap[String, Time] = TrieMap.empty[String, Time]
+  private val typeCheckResult: TrieMap[String, Time] = TrieMap.empty[String, Time]
+  private val javaCheckResult: TrieMap[String, Time] = TrieMap.empty[String, Time]
 
   private val allResults: List[(String, TrieMap[String, Time])] = List(
     ("enter-sym", enterSymsResult),
