@@ -2,6 +2,7 @@ package scala3profile
 
 import dotty.tools.dotc.core.Contexts.Context
 import dotty.tools.dotc.CompilationUnit
+import dotty.tools.dotc.Run.SubPhase
 import dotty.tools.dotc.report
 import dotty.tools.dotc.typer.TyperPhase
 import java.io.File
@@ -49,33 +50,36 @@ class ProfileTyper(
     result
   }
 
-  override final def enterSyms(using c: Context): Unit = {
+  override final def enterSyms(using c: Context)(using subphase: SubPhase): Boolean = {
     val start = Common.microTime()
-    super.enterSyms
+    val result = super.enterSyms
     val end = Common.microTime()
     val duration = end - start
     if (duration > minTime) {
       enterSymsResult += (c.compilationUnit.source.path -> Time(start = start, duration = duration))
     }
+    result
   }
 
-  override final def typeCheck(using c: Context): Unit = {
+  override final def typeCheck(using c: Context)(using subphase: SubPhase): Boolean = {
     val start = Common.microTime()
-    super.typeCheck
+    val result = super.typeCheck
     val end = Common.microTime()
     val duration = end - start
     if (duration > minTime) {
       typeCheckResult += (c.compilationUnit.source.path -> Time(start = start, duration = duration))
     }
+    result
   }
 
-  override final def javaCheck(using c: Context): Unit = {
+  override final def javaCheck(using c: Context)(using subphase: SubPhase): Boolean = {
     val start = Common.microTime()
-    super.javaCheck
+    val result = super.javaCheck
     val end = Common.microTime()
     val duration = end - start
     if (duration > minTime) {
       javaCheckResult += (c.compilationUnit.source.path -> Time(start = start, duration = duration))
     }
+    result
   }
 }
