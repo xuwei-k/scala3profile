@@ -13,14 +13,14 @@ import java.nio.charset.StandardCharsets
 
 trait ProfileBase extends Phases.Phase {
 
-  protected[this] def outputFile: File
-  protected[this] def minTime: Long
+  protected def outputFile: File
+  protected def minTime: Long
 
-  protected[this] def log: Logger
+  protected def log: Logger
 
-  protected[this] def categories: Seq[String]
+  protected def categories: Seq[String]
 
-  private[this] val compileTimeResults: TrieMap[String, Time] = TrieMap.empty[String, Time]
+  private val compileTimeResults: TrieMap[String, Time] = TrieMap.empty[String, Time]
 
   override final def runOn(units: List[CompilationUnit])(using Context): List[CompilationUnit] = {
     log.debug(s"start ${phaseName} profile " + outputFile)

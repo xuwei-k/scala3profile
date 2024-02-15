@@ -11,8 +11,8 @@ class Scala3Profile extends ResearchPlugin {
   override def name = "scala3profile"
   override def description = "profiler"
 
-  private[this] def stringToPosInt: String => Option[Long] = _.toLongOption.filter(_ > 0L)
-  private[this] val StringToPosLongExtractor: PartialFunction[String, Long] = stringToPosInt.unlift
+  private def stringToPosInt: String => Option[Long] = _.toLongOption.filter(_ > 0L)
+  private val StringToPosLongExtractor: PartialFunction[String, Long] = stringToPosInt.unlift
 
   override def init(options: List[String], phasesList: List[List[Phase]])(using c: Context): List[List[Phase]] = {
     report.echo("options = " + options.mkString(", "))
