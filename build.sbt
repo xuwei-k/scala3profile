@@ -104,7 +104,7 @@ lazy val compilerPlugin = project
   .in(file("compiler-plugin"))
   .settings(
     commonSettings,
-    scalaVersion := "3.5.1",
+    scalaVersion := "3.5.2",
     libraryDependencies += "org.scala-lang" %% "scala3-compiler" % scalaVersion.value,
     name := "scala3profile",
     description := "scala 3 profile compiler plugin",
