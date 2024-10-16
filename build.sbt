@@ -110,11 +110,11 @@ lazy val compilerPlugin = project
     description := "scala 3 profile compiler plugin",
   )
 
-ThisBuild / scalafixDependencies ++= {
+ThisBuild / scalafixDependencies += {
   scalaBinaryVersion.value match {
-    case "3" =>
-      Nil
+    case "2.12" =>
+      "com.github.xuwei-k" %% "scalafix-rules" % "0.4.5"
     case _ =>
-      Seq("com.github.xuwei-k" %% "scalafix-rules" % "0.4.5")
+      "com.github.xuwei-k" % "scalafix-rules_2.13" % "0.4.5"
   }
 }
