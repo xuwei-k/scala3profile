@@ -1,4 +1,4 @@
-def scala3 = "3.6.0-RC1-bin-20240810-ba2c731-NIGHTLY"
+def scala3 = "3.6.1-RC1-bin-20241014-69ac5fb-NIGHTLY"
 
 TaskKey[Unit]("check") := {
   val json: String = IO.read(target.value / "scala3profile-aggregate.json")
