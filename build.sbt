@@ -113,8 +113,8 @@ lazy val compilerPlugin = project
 ThisBuild / scalafixDependencies += {
   scalaBinaryVersion.value match {
     case "2.12" =>
-      "com.github.xuwei-k" %% "scalafix-rules" % "0.4.5"
+      "com.github.xuwei-k" %% "scalafix-rules" % "0.5.1"
     case _ =>
-      "com.github.xuwei-k" % "scalafix-rules_2.13" % "0.4.5"
+      "com.github.xuwei-k" % "scalafix-rules_2.13" % "0.5.1"
   }
 }
