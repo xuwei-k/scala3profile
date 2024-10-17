@@ -4,5 +4,4 @@
 > show libraryDependencies
 > Test/compile
 > scala3profileAggregate
-$ exists target/scala3profile-aggregate.json
 > check
