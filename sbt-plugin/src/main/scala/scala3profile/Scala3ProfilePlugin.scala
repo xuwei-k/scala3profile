@@ -1,6 +1,8 @@
 package scala3profile
 
-import sbt.*
+// format: off
+import sbt.{given ,*}
+// format: on
 import sbt.Keys.*
 import sjsonnew.shaded.scalajson.ast.unsafe.JArray
 import sjsonnew.shaded.scalajson.ast.unsafe.JValue

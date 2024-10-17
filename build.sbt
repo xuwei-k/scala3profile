@@ -72,13 +72,22 @@ commonSettings
 
 publish / skip := true
 
-lazy val sbtPlugin = project
+lazy val sbtPlugin = projectMatrix
   .in(file("sbt-plugin"))
   .enablePlugins(SbtPlugin)
+  .jvmPlatform(scalaVersions = Seq("2.12.20", "3.3.4"))
   .settings(
     commonSettings,
     description := "scala 3 profile sbt plugin",
     sbtTestDirectory := (LocalRootProject / baseDirectory).value / "test",
+    pluginCrossBuild / sbtVersion := {
+      scalaBinaryVersion.value match {
+        case "2.12" =>
+          (pluginCrossBuild / sbtVersion).value
+        case _ =>
+          "2.0.0-M2"
+      }
+    },
     Compile / sourceGenerators += task {
       val dir = (Compile / sourceManaged).value
       val className = "Scala3ProfileBuildInfo"
