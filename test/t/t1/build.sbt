@@ -1,4 +1,4 @@
-def scala3 = "3.6.1-RC1-bin-20241014-69ac5fb-NIGHTLY"
+def scala3 = "3.6.4-RC1-bin-20241205-c61897d-NIGHTLY"
 
 val a1 = project.settings(
   scalaVersion := scala3
