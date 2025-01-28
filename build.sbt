@@ -75,7 +75,7 @@ publish / skip := true
 lazy val sbtPlugin = projectMatrix
   .in(file("sbt-plugin"))
   .enablePlugins(SbtPlugin)
-  .jvmPlatform(scalaVersions = Seq("2.12.20", "3.3.4"))
+  .jvmPlatform(scalaVersions = Seq("2.12.20", "3.3.5"))
   .settings(
     commonSettings,
     description := "scala 3 profile sbt plugin",
