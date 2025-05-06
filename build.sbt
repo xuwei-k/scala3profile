@@ -75,7 +75,7 @@ publish / skip := true
 lazy val sbtPlugin = projectMatrix
   .in(file("sbt-plugin"))
   .enablePlugins(SbtPlugin)
-  .jvmPlatform(scalaVersions = Seq("2.12.20", "3.3.5"))
+  .jvmPlatform(scalaVersions = Seq("2.12.20", "3.6.4"))
   .settings(
     commonSettings,
     description := "scala 3 profile sbt plugin",
@@ -85,7 +85,7 @@ lazy val sbtPlugin = projectMatrix
         case "2.12" =>
           (pluginCrossBuild / sbtVersion).value
         case _ =>
-          "2.0.0-M2"
+          "2.0.0-M4"
       }
     },
     Compile / sourceGenerators += task {
