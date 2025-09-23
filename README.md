@@ -18,4 +18,4 @@ set `NIGHTLY` Scala 3 version because `scala3profile` is `ResearchPlugin`.
 - https://github.com/scala/scala3/blob/2fc299b6c6972733c7e1e46490fee8724acd3b7a/docs/_docs/reference/changed-features/compiler-plugins.md?plain=1#L17-L21
 
 You can find latest `NIGHTLY` Scala 3 version here
-https://repo1.maven.org/maven2/org/scala-lang/scala3-compiler_3/
+https://repo.scala-lang.org/ui/packages/gav:%2F%2Forg.scala-lang:scala3-compiler_3
